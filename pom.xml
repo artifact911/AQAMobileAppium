@@ -9,8 +9,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+<!--        do not change version!!!-->
         <selenium-java-version>3.141.59</selenium-java-version>
-        <appium-java-client-version>7.0.0</appium-java-client-version>
+        <appium-java-client-version>7.6.0</appium-java-client-version>
+
         <aspectj.version>1.9.7</aspectj.version>
         <allure-version>2.18.1</allure-version>
         <allure-maven-version>2.8</allure-maven-version>
@@ -96,7 +98,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!--                <groupId>org.apache.maven.plugins</groupId>-->
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin-version}</version>
                 <configuration>
