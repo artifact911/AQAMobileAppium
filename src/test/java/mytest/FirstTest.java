@@ -15,24 +15,8 @@ public class FirstTest extends CoreTestCase {
     private static final String START_PAGE_PREFIX = "com.andersen.abanking:";
 
     @Test
-    void firstTest() {
-        WebElement enterBtn = WaitersUtil
-                .waitForElementAndClick(driver, By.id(START_PAGE_PREFIX + "id/splash_button_enter"), "err");
-
-        WebElement login = WaitersUtil
-                .waitForElementAndSendKeys(driver, By.id(START_PAGE_PREFIX + "id/login_et_login"), "1234567", "err");
-
-        login = WaitersUtil.waitForElementAndClear(driver, By.id(START_PAGE_PREFIX + "id/login_et_login"), "err", 2L);
-
-        login = WaitersUtil
-                .waitForElementAndSendKeys(driver, By.id(START_PAGE_PREFIX + "id/login_et_login"), "1234567", "err");
-
-        WebElement password = WaitersUtil
-                .waitForElementAndSendKeys(driver, By.id(START_PAGE_PREFIX + "id/login_et_password"), "Passw0rd", "err");
-
-        WebElement enterBTN = WaitersUtil
-                .waitForElementAndClick(driver, By.id(START_PAGE_PREFIX + "id/login_submit_button"), "err");
-
+    void logInTest() {
+        logIn();
 
         System.out.println("!!!");
     }
