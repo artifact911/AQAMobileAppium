@@ -7,10 +7,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import pages.change.password.ChangePasswordPage;
+import pages.change.password.SuccessesPage;
 import pages.confirmation.ConfirmationLoginPage;
 import pages.login.LoginPage;
+import pages.main.MainPage;
 import pages.start.StartPage;
-import util.WaitersUtil;
 
 import java.net.URL;
 
@@ -55,6 +57,15 @@ public class CoreTestCase {
         waitForElPresent(driver, loginPage.getEnterBTN(), "Enter button was not found").click();
         ConfirmationLoginPage confLoginPage = new ConfirmationLoginPage(driver);
         waitForElementAndSendKeys(driver, confLoginPage.getConfirmField(), CODE_AFTER_LOGIN, "Confirmation field was not found");
-        waitForElPresent(driver, confLoginPage.getConfirmBTN(), "Confirmation button was not found");
+        waitForElPresent(driver, confLoginPage.getConfirmBTN(), "Confirmation button was not found").click();
+        ChangePasswordPage changePassPage = new ChangePasswordPage(driver);
+        waitForElementAndSendKeys(driver, changePassPage.getCurrentPasswordField(), PASSWORD, "OldPassword field was not found");
+        waitForElementAndSendKeys(driver, changePassPage.getNewPasswordField(), "Arti911", "NewPassword field was not found");
+        waitForElementAndSendKeys(driver, changePassPage.getRepeatPasswordField(), "Arti911", "RepPassword field was not found");
+        waitForElPresent(driver, changePassPage.getSavePasswordBTN(), "SavePassBTN was not found").click();
+        SuccessesPage successesPage = new SuccessesPage(driver);
+        waitForElPresent(driver, successesPage.getToMainBTN(), "ToMain button was not found").click();
+        MainPage mainPage = new MainPage(driver);
+        waitForElPresent(driver, mainPage.getBarTitle(), "Title was not found");
     }
 }

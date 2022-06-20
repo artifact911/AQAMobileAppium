@@ -4,11 +4,13 @@ import core.CoreTestCase;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.main.MainPage;
 import util.WaitersUtil;
 
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FirstTest extends CoreTestCase {
 
@@ -16,8 +18,10 @@ public class FirstTest extends CoreTestCase {
 
     @Test
     void logInTest() {
+        MainPage mainPage = new MainPage(driver);
         logIn();
 
+        assertTrue(WaitersUtil.waitForElPresent(driver, mainPage.getBarTitle(), "err").isDisplayed());
         System.out.println("!!!");
     }
 

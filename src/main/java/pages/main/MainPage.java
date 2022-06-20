@@ -1,4 +1,4 @@
-package pages.start;
+package pages.main;
 
 import io.appium.java_client.AppiumDriver;
 import lombok.Getter;
@@ -8,13 +8,13 @@ import org.openqa.selenium.WebElement;
 import static core.common.CommonLocators.START_PAGE_PREFIX;
 
 @Getter
-public class StartPage {
+public class MainPage {
 
     private final AppiumDriver<WebElement> driver;
 
-    private final By enterBtnId = By.id(START_PAGE_PREFIX + "id/splash_button_enter");
+    private final By barTitle = By.id(START_PAGE_PREFIX + "id/app_bar_title");
 
-    public StartPage(AppiumDriver<WebElement> driver) {
+    public MainPage(AppiumDriver<WebElement> driver) {
         this.driver = driver;
     }
 }
