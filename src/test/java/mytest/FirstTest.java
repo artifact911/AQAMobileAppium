@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import util.WaitersUtil;
@@ -67,6 +68,10 @@ public class FirstTest {
 
     @Test
     void testCompareArticleTitle() {
+
+        // так поворачиваем девайс
+//        driver.rotate(ScreenOrientation.LANDSCAPE);
+
         WebElement demoBTN = WaitersUtil
                 .waitForElPresent(driver, By.id(START_PAGE_PREFIX + "id/splash_button_demo"), "err");
 

@@ -50,4 +50,9 @@ public class WaitersUtil {
         element.clear();
         return element;
     }
+
+    public static String waitForElementAndGetAttribute(RemoteWebDriver driver, By by, String attribute, String err, long timeOut) {
+        WebElement element = waitForElPresent(driver, by, err, timeOut);
+        return element.getAttribute(attribute);
+    }
 }
