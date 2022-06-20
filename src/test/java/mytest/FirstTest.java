@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import util.WaitersUtil;
 
 import java.net.URL;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -78,5 +80,16 @@ public class FirstTest {
         String text = demoBTN.getAttribute("text");
 
         assertEquals("ДЕМОВЕРСИЯ", text);
+    }
+
+    @Test
+    void testCheckEnterBtnInBackground() {
+        WebElement enterBtn = WaitersUtil
+                .waitForElPresent(driver, By.id(START_PAGE_PREFIX + "id/splash_button_enter"), "err");
+
+        driver.runAppInBackground(Duration.ofSeconds(2));
+
+        WebElement enterBtnAfterReturnFromBackground = WaitersUtil
+                .waitForElPresent(driver, By.id(START_PAGE_PREFIX + "id/splash_button_enter"), "err");
     }
 }
