@@ -1,58 +1,57 @@
 package util;
 
+import core.CoreTestCase;
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitersUtil {
-
-    private WaitersUtil() {
-    }
+@UtilityClass
+public class WaitersUtil extends CoreTestCase {
 
     @SneakyThrows
-    public static void getTimeOut(long time) {
+    public void getTimeOut(long time) {
         Thread.sleep(time);
     }
 
-    public static WebElement waitForElPresent(RemoteWebDriver driver, By by, String errMessage, long timeOutSec) {
+    public WebElement waitForElPresent(By by, String errMessage, long timeOutSec) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutSec);
         wait.withMessage(errMessage + "\n");
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public static WebElement waitForElPresent(RemoteWebDriver driver, By by, String errMessage) {
-      return waitForElPresent(driver, by, errMessage, 5L);
+    public WebElement waitForElPresent(By by, String errMessage) {
+      return waitForElPresent(by, errMessage, 5L);
     }
 
-    public static WebElement waitForElementAndClick(RemoteWebDriver driver, By by, String err) {
-        WebElement webElement = waitForElPresent(driver, by, err);
+    public WebElement waitForElementAndClick(By by, String err) {
+        WebElement webElement = waitForElPresent(by, err);
         webElement.click();
         return webElement;
     }
 
-    public static WebElement waitForElementAndSendKeys(RemoteWebDriver driver, By by, String value, String err) {
-        WebElement webElement = waitForElPresent(driver, by, err);
+    public WebElement waitForElementAndSendKeys(By by, String value, String err) {
+        WebElement webElement = waitForElPresent(by, err);
         webElement.sendKeys(value);
         return webElement;
     }
 
-    public static boolean waitForElementNotPresent(RemoteWebDriver driver, By by, String err, long timeOut) {
+    public boolean waitForElementNotPresent(By by, String err, long timeOut) {
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.withMessage(err + "\n");
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
-    public static WebElement waitForElementAndClear(RemoteWebDriver driver, By by, String err, long timeOut) {
-        WebElement element = waitForElPresent(driver, by, err, timeOut);
+    public WebElement waitForElementAndClear(By by, String err, long timeOut) {
+        WebElement element = waitForElPresent(by, err, timeOut);
         element.clear();
         return element;
     }
 
-    public static String waitForElementAndGetAttribute(RemoteWebDriver driver, By by, String attribute, String err, long timeOut) {
-        WebElement element = waitForElPresent(driver, by, err, timeOut);
+    public String waitForElementAndGetAttribute(By by, String attribute, String err, long timeOut) {
+        WebElement element = waitForElPresent(by, err, timeOut);
         return element.getAttribute(attribute);
     }
 }

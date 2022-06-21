@@ -1,26 +1,26 @@
 package util;
 
-import io.appium.java_client.AppiumDriver;
+import core.CoreTestCase;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 
-public class ActUtil {
+@UtilityClass
+public class ActUtil extends CoreTestCase {
 
-    private ActUtil() {
-    }
 
     // хотим свайпнуть снизу экрана вверх по середине по оси Х
     // чем больше время, тем медленнее свайпает
-    public void swipeUp(AppiumDriver driver, int timeOfSwipe) {
+    public void swipeUp(int timeOfSwipe) {
 
         // позволяет производить действия на экране
-        TouchAction action = new TouchAction(driver);
+        TouchAction  action = new TouchAction(driver);
 
         // получаем размер экрана
         Dimension size = driver.manage().window().getSize();
@@ -41,24 +41,24 @@ public class ActUtil {
               .perform();
     }
 
-    public void swipeUpQuick(AppiumDriver driver) {
-        swipeUp(driver, 200);
+    public void swipeUpQuick() {
+        swipeUp( 200);
     }
 
-    public void swipeUpToFindElement(AppiumDriver driver, By by, String err, int maxSwipes) {
+    public void swipeUpToFindElement(By by, String err, int maxSwipes) {
      int alreadySwiped = 0;
         while (driver.findElements(by).size() == 0) {
             if (alreadySwiped > maxSwipes){
-                WaitersUtil.waitForElPresent(driver, by, "Can't find el by swiping up \n" + err);
+                WaitersUtil.waitForElPresent(by, "Can't find el by swiping up \n" + err);
                 return;
             }
-            swipeUpQuick(driver);
+            swipeUpQuick();
             ++alreadySwiped;
         }
     }
 
-    public void swipeElementToLeft(AppiumDriver driver, By by, String err) {
-        WebElement element = WaitersUtil.waitForElPresent(driver, by, err, 10);
+    public void swipeElementToLeft(By by, String err) {
+        WebElement element = WaitersUtil.waitForElPresent(by, err, 10);
 
         // левая/правая точка элемента по оси Х
         int leftX = element.getLocation().getX();
