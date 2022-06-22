@@ -20,7 +20,7 @@ public class Platform {
     }
 
     private String getPlatformVar() {
-        return System.getenv("PLATFORM");
+        return System.getenv("platformName");
     }
 
     public AppiumDriver<RemoteWebElement> getDriver() {

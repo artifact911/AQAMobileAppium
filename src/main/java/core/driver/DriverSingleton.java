@@ -37,14 +37,32 @@ public enum DriverSingleton {
 
     private static DesiredCapabilities getAndroidDesiredCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "SamsungA52");
-        capabilities.setCapability("udud", "RZ8RB0QCRLY");
-        capabilities.setCapability("platformVersion", "12");
-        capabilities.setCapability("automationName", "Appium");
-        capabilities.setCapability("appPackage", "com.andersen.abanking");
-        capabilities.setCapability("appActivity", "com.andersen.abanking.MainActivity");
-        capabilities.setCapability("app", "/Users/anduser/Documents/_Projects/fromLessons/AQAMobileAppium/src/apks/app-debug.apk");
+        capabilities.setCapability(CapType.PLATFORM_NAME.capName, System.getenv(CapType.PLATFORM_NAME.capName));
+        capabilities.setCapability(CapType.PLATFORM_VERSION.capName, System.getenv(CapType.PLATFORM_VERSION.capName));
+        capabilities.setCapability(CapType.DEVICE_NAME.capName, System.getenv(CapType.DEVICE_NAME.capName));
+        capabilities.setCapability(CapType.UDID.capName, System.getenv(CapType.UDID.capName));
+        capabilities.setCapability(CapType.AUTOMATION_NAME.capName, System.getenv(CapType.AUTOMATION_NAME.capName));
+        capabilities.setCapability(CapType.APP_PACKAGE.capName, System.getenv(CapType.APP_PACKAGE.capName));
+        capabilities.setCapability(CapType.APP_ACTIVITY.capName, System.getenv(CapType.APP_ACTIVITY.capName));
+        capabilities.setCapability(CapType.APP.capName, System.getenv(CapType.APP.capName));
         return capabilities;
+
+    }
+}
+
+enum CapType {
+    PLATFORM_NAME("platformName"),
+    PLATFORM_VERSION("platformVersion"),
+    DEVICE_NAME("deviceName"),
+    UDID("udid"),
+    AUTOMATION_NAME("automationName"),
+    APP_PACKAGE("appPackage"),
+    APP_ACTIVITY("appActivity"),
+    APP("app");
+
+    final String capName;
+
+    CapType(String capName) {
+        this.capName = capName;
     }
 }
