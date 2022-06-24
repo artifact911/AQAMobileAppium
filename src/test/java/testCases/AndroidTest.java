@@ -12,10 +12,11 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pages.start.StartPage.DEMO_BTN_TEXT;
 
-public class FirstTest extends CoreTestCase {
+public class AndroidTest extends CoreTestCase {
 
-    private static final String EXPECTED_DEMO_BTN_TEXT = "ДЕМОВЕРСИЯ";
+
 
     @Test
     void logInTest() {
@@ -31,7 +32,7 @@ public class FirstTest extends CoreTestCase {
         WebElement demoBTN = WaitersUtil
                 .waitForElPresent(page.getDemoBtnId(), "DemoBTN was not found");
 
-        assertEquals(EXPECTED_DEMO_BTN_TEXT, demoBTN.getAttribute("text"));
+        assertEquals(DEMO_BTN_TEXT, demoBTN.getAttribute("text"));
     }
 
     @Test

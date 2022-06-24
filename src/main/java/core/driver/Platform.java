@@ -16,7 +16,7 @@ public class Platform {
     }
 
     private boolean isPlatform(DriverSingleton driverSingleton) {
-        return driverSingleton.name.equalsIgnoreCase(getPlatformVar());
+        return driverSingleton.getName().equalsIgnoreCase(getPlatformVar());
     }
 
     private String getPlatformVar() {
@@ -25,9 +25,9 @@ public class Platform {
 
     public AppiumDriver<RemoteWebElement> getDriver() {
         if(isAndroid()) {
-            return DriverSingleton.ANDROID.getDriverByPlatform();
+            return DriverSingleton.ANDROID.getDriver();
         } else {
-            return DriverSingleton.IOS.getDriverByPlatform();
+            return DriverSingleton.IOS.getDriver();
         }
     }
 }
