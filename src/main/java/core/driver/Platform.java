@@ -7,15 +7,15 @@ import org.openqa.selenium.remote.RemoteWebElement;
 @UtilityClass
 public class Platform {
 
-    private boolean isAndroid() {
+    public boolean isAndroid() {
         return isPlatform(DriverSingleton.ANDROID);
     }
 
-    private boolean isIOS() {
+    public boolean isIOS() {
         return isPlatform(DriverSingleton.IOS);
     }
 
-    private boolean isPlatform(DriverSingleton driverSingleton) {
+    public boolean isPlatform(DriverSingleton driverSingleton) {
         return driverSingleton.getName().equalsIgnoreCase(getPlatformVar());
     }
 
